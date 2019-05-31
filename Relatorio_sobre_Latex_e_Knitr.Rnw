@@ -1,0 +1,64 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc} 
+
+\begin{document}
+
+\title{Relatório sobre Latex}
+\date{May 31st, 2019}
+\author{Akira Medeiros}
+
+\maketitle 
+
+Relatório sobre Latex e Knitr
+
+\vspace{0.5cm}
+
+\textbf{Universidade Catolica do Uruguay}
+
+\textit{Escuela de Invierno de Métodos da Universidade Católica de Uruguay}
+
+\underline{15 a 26 de julho de 2019}
+
+\vspace{0.5cm}
+
+Lista de cursos
+\begin{itemize} 
+\item Introducción a la Estadística Inferencial 
+\item Introducción a regresión lineal y análisis multivariado 
+\end{itemize}
+
+
+\begin{enumerate} 
+\item Introducción a la Estadística Inferencial 
+\item Introducción a regresión lineal y análisis multivariado
+\end{enumerate}
+
+\section{Lista de Cursos}
+\subsection{Semana 1}
+\subsubsection{Introducción a la Estadística Inferencial}
+\subsection{Semana 2}
+\subsubsection{Introducción a regresión lineal y análisis multivariado}
+
+Títulos e Secões não numerados:
+\section*{Lista de Cursos}
+\subsection*{Semana 1}
+\subsubsection*{Introducción a la Estadística Inferencial}
+
+Equações em Latex
+
+$$\alpha^2 + \beta^2 = \chi^2$$
+
+$$\frac{\sqrt{1}}{2} * \frac{a}{2b} = \frac{a}{4b}$$ 
+
+$$\sum_0^{10} x = ...$$ 
+
+Nós temos que combater os cavaleiros do apocalispe.
+
+\vspace{0.5cm}
+Equação de Pitágoras
+\vspace{0.5cm}
+$$a^2 = b^2 + c^2$$
+
+\end{document}
+
