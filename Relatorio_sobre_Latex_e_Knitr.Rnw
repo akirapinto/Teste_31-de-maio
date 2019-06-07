@@ -59,6 +59,56 @@ Nós temos que combater os cavaleiros do apocalispe.
 Equação de Pitágoras
 \vspace{0.5cm}
 $$a^2 = b^2 + c^2$$
+\vspace{0.5cm}
+
+<<>>=
+x <- 1+1
+@
+
+O valor de 1 + 1 é igual ao valor x, portanto é igual à \Sexpr{x}
+
+\vspace{0.5cm}
+
+<<results='asis', echo=F, eval=T, warning=F, message=F>>=
+library(tidyverse)
+library(knitr)
+
+file1 <- "https://raw.githubusercontent.com/leobarone/ifch_intro_r/master/data/bf_amostra_hv.csv"
+dados <- read.table(file1, header = T, sep = ",")
+
+dados %>% group_by(uf) %>%
+  summarize(mean_valor=mean(valor)) %>% 
+  kable()
+@
+
+<<fig.cap="Titulo de Figura", fig.height=4, fig.width=4, echo=F, eval=T, warning=F, message=F>>=
+library(tidyverse)
+library(knitr)
+
+file1 <- "https://raw.githubusercontent.com/leobarone/ifch_intro_r/master/data/bf_amostra_hv.csv"
+dados <- read.table(file1, header = T, sep = ",")
+
+dados %>% group_by(uf) %>%
+  summarize(mean_valor=mean(valor)) %>% 
+  ggplot() + 
+  geom_col(aes(x=uf, y=mean_valor))
+@
+
+\vspace{0.5cm}
+
+<<results='asis', echo=F, eval=T, warning=F, message=F>>=
+
+mtcars %>% kable()
+@
+
+\vspace{0.5cm}
+
+<<fig.cap="N de gears x drat", fig.height=4, fig.width=4, echo=F>>= 
+mtcars %>%
+  ggplot() + 
+  geom_col(aes(x = gear, y = drat))
+ @
+ 
 
 \end{document}
 

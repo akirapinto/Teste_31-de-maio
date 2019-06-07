@@ -76,3 +76,86 @@
 # Se compilar o seu PDF agora, não veja nenhuma diferença. Por que? Porque não tem nada diferente entre begin{document} e end{document}. 
 # Para estes característicos aparecem em nosso documento, precisamos inserir o seguinte depois de \begin{document}:
 
+## Apresentações
+## Latex é muito útil para apresentações profissionais. Tem vários opções, mas o mais comum é o estilo ‘beamer’. Começa no início com: 
+## Vou criar um novo rnw para este novo arquivo
+## Finalmente consegui criar uma apresentação. Para isso utilizei o seguinte código:
+
+## \documentclass{beamer}
+## \usepackage{graphicx}
+## \begin{document} 
+## \begin{frame}
+## \frametitle{Título do Slide} 
+## Texto, conteúdo normal 
+## Mais texto 
+## \end{frame}
+## \end{document} 
+
+## EXERCICIO: Crie uma Apresentação em PDF com três slides diferentes.
+
+## Pronto, feito o exercicio com 3 slides diferentes. 
+
+## [de volta no Rnw Relatorio sobre Latex e Knitr]
+## Knitr: Integrando código do R e Latex
+## As tabelas e os gráficos que você quer mostrar no seu documento/apresentação podem ser gerados no mesmo documento em ‘chunks’ do mesmo tipo que encontramos em Rmarkdown
+## A lógica é identical, com apenas uma pequena mudança de estilo da demarcação do chunk.
+## Para inserir um novo chunk, use a opção ’+ C’em Rstudio. Ele aparece um pouco diferente:
+
+## <<>>=
+## x <- 1+1
+## @
+
+## Mas significa exatamente o mesmo que o seguinte em Rmarkdown:
+
+
+## ```r
+## x <- 1 + 1
+## ``` 
+
+## Podemos também inserir os resultados do nosso chunk dentro do parágrafo usando \Sexpr{x}
+## Como em Rmarkdown, podemos especificar parâmetros dos chunks entre <<>>.
+## <<echo=F, eval=T, warning=F, message=F>>
+
+## Tabelas em Knitr
+## Latex tem uma gramática de tabelas chato de preparar. Mas nunca precisamos digitar ele direitamente.
+## Como em Rmarkdown, o jeito mais fácil de gerar uma tabela é criar um data.frame em R e passar para a função kable.
+## O código embaixo é identical que o código que usamos para gerar uma tabela em Rmarkdown.
+## Insere-lo dentro de um chunk no seu documento .Rnw e precisamos fazer apenas mais uma coisa para que ele aperece bonito: adicionar o parâmetro results=‘asis’ no header do chunk.
+
+## OBS: para evitar que as linhas de código fossem impressas no pdf do Rnw foi necessário adicionar alguns parâmetros ao chunk do código além do <<results='asis'>>=
+## <<echo=F, eval=T, warning=F, message=F>>
+## assim o parâmetro ficou:
+## <<results='asis', echo=F, eval=T, warning=F, message=F>>=
+
+## <<results='asis'>>=
+##   library(tidyverse)
+## library(knitr)
+
+## file1 <- "https://raw.githubusercontent.com/leobarone/ifch_intro_r/master/data/bf_amostra_hv.csv"
+## dados <- read.table(file1, header = T, sep = ",")
+
+## dados %>% group_by(uf) %>%
+##    summarize(mean_valor=mean(valor)) %>% 
+##    kable()
+## @
+
+## Figuras em Knitr
+## Para inserir gráficos gerados por seu código, é a mesma lógica. 
+## Crie o gráfico em ggplot dentro de um chunk em seu documento de .Rnw. 
+## Não precisamos ajustar nenhum parâmetro do chunk, mas existem várias opções úteis para figuras para controlar o título, tamanho etc.
+
+## <<fig.cap="Titulo de Figura", fig.height=4, fig.width=4>>=
+##   library(tidyverse)
+## library(knitr)
+
+## file1 <- "https://raw.githubusercontent.com/leobarone/ifch_intro_r/master/data/bf_amostra_hv.csv"
+## dados <- read.table(file1, header = T, sep = ",")
+
+## dados %>% group_by(uf) %>%
+##  summarize(mean_valor=mean(valor)) %>% 
+##   ggplot() + 
+##   geom_col(aes(x=uf, y=mean_valor))
+## @
+
+## EXERCICIO
+## Usando os dados do mtcars (disponível automaticamente como mtcars em R), gere uma tabela e uma figura dentro de um PDF criado usando Knitr.
